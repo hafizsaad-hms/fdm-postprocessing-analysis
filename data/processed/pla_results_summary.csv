@@ -1,0 +1,8 @@
+treatment,mean_ra_um,std_dev_um,improvement_percent,solvent_or_mechanism
+Control,4.5,0.4,0.0,As-printed baseline
+Treatment_A,1.6,0.25,64.4,400-1000 grit manual abrasion
+Treatment_B,0.85,0.18,81.1,Ethyl Acetate vapor fuming
+Treatment_C,1.1,0.2,75.6,Epoxy coating 150um layer
+Treatment_D,0.68,0.12,84.9,Sanding + Ethyl Acetate vapor
+Treatment_E,0.52,0.1,88.4,Sanding + Ethyl Acetate + Epoxy
+```[cite: 4]
