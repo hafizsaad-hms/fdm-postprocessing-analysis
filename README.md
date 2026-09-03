@@ -1,5 +1,3 @@
-# fdm-postprocessing-analysis
-Experimental analysis of surface roughness (ISO 4287), tensile properties (ASTM D638), dimensional tolerancing, and cost-effectiveness for post-processed FDM ABS/PLA parts.
 # Post-Processing Optimization for FDM 3D-Printed Parts: Surface Metrology, Mechanical Integrity, and Cost Analysis
 
 **Principal Investigator:** Hafiz Muhammad Saad  
@@ -64,3 +62,31 @@ Nominal baseline coupon: $75.0\text{ mm} \times 25.0\text{ mm} \times 3.0\text{ 
 ---
 
 ## Industrial Decision Framework
+[Functional Requirements]
+                                 │
+       ┌─────────────────────────┴─────────────────────────┐
+       ▼                                                   ▼
+[Aesthetic / Non-Load]                             [High-Load / Contact]
+│                                                   │
+Tight Budget?                                       Sub-Micron Finish?
+┌─────┴─────┐                                       ┌─────┴─────┐
+YES          NO                                     YES          NO
+│           │                                       │           │
+▼           ▼                                       ▼           ▼
+Treatment A  Treatment D                            Treatment E  Treatment C
+(Sanding)    (Sand + Vapor)                         (Full Tri)   (Epoxy Only)
+Ra: 1.9 µm   Ra: 0.72 µm                            Ra: 0.58 µm  Ra: 1.2 µm
+PKR 50/unit  PKR 115/unit                           PKR 255/unit PKR 160/unit
+### Case Study Implementations
+* **Automotive Support Structure (Millat Tractors Engine Bracket):** Treatment E. Met tight fluid run-off roughness targets ($R_a < 0.6\,\mu\text{m}$) and maximum structural resilience at PKR 180 scaled production cost[cite: 3].
+* **Robotic Gripper Actuator (Automated Waste Sorter):** Treatment A (PLA). Minimal production lead time, low sliding friction, and zero chemical hazard at PKR 30/unit[cite: 3].
+* **Commercial Hardware Shell (Consumer Display):** Treatment D. High-gloss visual finish ($R_a < 0.75\,\mu\text{m}$) without extended epoxy thermal/cure cycles[cite: 3].
+
+---
+
+## Analytical Pipeline & Usage
+
+### Prerequisites
+```bash
+pip install numpy pandas scipy statsmodels matplotlib seaborn
+python scripts/anova_statistical_analysis.py --input data/raw/surface_roughness_raw.csv --alpha 0.05
